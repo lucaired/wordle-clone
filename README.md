@@ -6,7 +6,7 @@ This is a [React](https://reactjs.org/docs/create-a-new-react-app.html) template
 
 Click the button below to start a new development environment:
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/gitpod-io/create-react-app)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/lucaired/create-react-app)
 
 ## Get Started With Your Own Project
 
