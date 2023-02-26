@@ -2,11 +2,23 @@ import './App.css';
 import { useEffect, useState } from 'react';
 
 function App() {
+
   const [words, setWords] = useState([])
   const [solution, setSolution] = useState('')
   const [guesses, addGuess] = useState([])
   const [input, setInput] = useState('')
   const [inputCSSclass, setInputCSSclass] = useState('')
+
+  
+  const unusedGuesses = [
+    ['', 'grey'],
+    ['', 'grey'],
+    ['', 'grey'],
+    ['', 'grey'],
+    ['', 'grey'],
+    ['', 'grey'],
+  ] 
+
   // howto use useEffect
   // Object.entries etc.
   // how to check if substring
@@ -77,7 +89,7 @@ function App() {
           display: 'flex',
           flexDirection: 'column',
         }}>
-        {guesses.map((guess, index) => 
+        {guesses.map((guess, index) =>
           <div 
             key={index} 
             style={{
@@ -102,7 +114,34 @@ function App() {
               </p>
             )}
           </div>
-      )}</div>
+        )}
+        {unusedGuesses.slice(0,6-guesses.length).map((guess, index) =>
+          <div 
+            key={index} 
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              gap: '5px',
+            }}>
+            {guess.map((letter, index) => 
+              <p 
+                key={letter[0]+index} 
+                style={{
+                  background: letter[1],
+                  color: 'white',
+                  lineHeight: '20px',
+                  width: '20px',
+                  margin: '0px',
+                  marginBottom: '5px'
+                }}
+              >
+                {letter[0]}
+              </p>
+            )}
+          </div>
+        )}
+      </div>
       <div style={{display: 'flex', justifyContent: 'center'}}>
         {guesses.length < 6 ? 
         <div className={inputCSSclass}>
