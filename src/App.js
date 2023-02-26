@@ -26,11 +26,13 @@ function App() {
   // input
 
   const handleInput = (new_input) => {
-    if (new_input.length == 5) {
+    if (new_input.length === 5) {
       let guess = new Array(5)
       for (let i = 0; i < new_input.length; i++) {
         const letter = new_input[i]
-        const color = new_input[i] === solution[i] ? 'red' : solution.includes(new_input[i]) ? 'yellow' : 'grey'
+        const color = new_input[i] === solution[i] ? '#6aaa64' 
+                      : solution.includes(new_input[i]) ? '#c9b458' 
+                      : 'grey'
         guess[i] = [letter, color]
       }
       addGuess([...guesses, guess])
@@ -42,17 +44,56 @@ function App() {
 
   return (
     <div className="App">
-      <div style={{display: 'flex', flexDirection: 'column'}}>
+      <div style={{
+          display: 'flex',
+          justifyContent: 'flex-end'
+        }}>
+        <p 
+          style={{
+            borderRadius: '50%',
+            backgroundColor: '#f00',
+            width: '20px',
+            color: 'white',
+            marginRight: '15px'
+          }}
+        >
+          {6-guesses.length}
+        </p>
+      </div>
+      <div 
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+        }}>
         {guesses.map((guess, index) => 
-        <div key={index} style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
-          {guess.map((letter, index) => 
-            <p key={letter[0]+index} style={{backgroundColor: letter[1]}}>{letter[0]}</p>
-          )}
-        </div>
+          <div 
+            key={index} 
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              gap: '5px',
+            }}>
+            {guess.map((letter, index) => 
+              <p 
+                key={letter[0]+index} 
+                style={{
+                  background: letter[1],
+                  color: 'white',
+                  lineHeight: '20px',
+                  width: '20px',
+                  margin: '0px',
+                  marginBottom: '5px'
+                }}
+              >
+                {letter[0]}
+              </p>
+            )}
+          </div>
       )}</div>
-      <div>
+      <div style={{display: 'flex', justifyContent: 'center'}}>
         {guesses.length < 6 ? 
-        <div>Input: 
+        <div>Guess:{' '} 
           <input
             value={input}
             onChange={e => handleInput(e.target.value)} 
