@@ -69,6 +69,9 @@ function App() {
               else if (chosenWord.includes(word[i])) {
                 newWords[currentIndex[0]][i]['color'] = 'orange'
               }
+              else {
+                newWords[currentIndex[0]][i]['color'] = 'grey'
+              }
             }
             setCurrentIndex([currentIndex[0] + 1, 0])
             setWords(newWords)
@@ -100,7 +103,7 @@ function App() {
           letterButtonHandler={letterButtonHandler}
           enterButtonHandler={enterButtonHandler}
           delButtonHandler={delButtonHandler}
-          colorCoding={{}}
+          words={words}
         />
       </div>
     </div>

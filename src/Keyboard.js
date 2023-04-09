@@ -11,12 +11,12 @@ function KeyboardButtonRow(props) {
         columnGap: '5px'
     }}>
         {letters.map((letter) => {
-                    return <KeyboardButton 
-                                letter={letter} 
-                                color={colorCoding[letter]} 
-                                buttonHandler={buttonHandler}
-                                buttonStyle={{}}
-                            />
+            return <KeyboardButton 
+                        letter={letter} 
+                        color={colorCoding[letter]} 
+                        buttonHandler={buttonHandler}
+                        buttonStyle={{}}
+                    />
         })}
     </div>
 }
@@ -29,7 +29,12 @@ function KeyboardButton(props) {
     // Detructure props in letter, color and buttonHandler
     const { letter, color, buttonHandler, buttonStyle } = props
 
-    return <button style={{ backgroundColor: color, ...buttonStyle }} onClick={() => buttonHandler(letter)}>{letter}</button>
+    return <button 
+            style={{ backgroundColor: color, ...buttonStyle }} 
+            onClick={() => buttonHandler(letter)}
+        >
+            {letter}
+        </button>
 }
 
 function Keyboard(props) {
@@ -38,12 +43,14 @@ function Keyboard(props) {
      */
     
     // Detructure props in buttonHandler and colorCoding
-    const { letterButtonHandler, enterButtonHandler, delButtonHandler, colorCoding } = props
+    const { letterButtonHandler, enterButtonHandler, delButtonHandler, words } = props
 
     // Create a list of letters
     const letters = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M']
-
     
+    // TODO: build colorcoding by reading the letters one by one, and setting the color to green, orange or grey
+    // green has precedence over orange, which has precedence over grey
+
     return <div>
         <div style={{
             display: 'grid',
@@ -53,12 +60,12 @@ function Keyboard(props) {
         }}>
             <KeyboardButtonRow 
                 letters= {letters.slice(0,10)}
-                colorCoding={colorCoding}
+                colorCoding={{}}
                 buttonHandler={letterButtonHandler}
             />
             <KeyboardButtonRow 
                 letters= {letters.slice(10, 19)} 
-                colorCoding={colorCoding}
+                colorCoding={{}}
                 buttonHandler={letterButtonHandler}
             />
             <div style={{
@@ -73,7 +80,7 @@ function Keyboard(props) {
                 />
                 <KeyboardButtonRow 
                     letters= {letters.slice(19)} 
-                    colorCoding={colorCoding}
+                    colorCoding={{}}
                     buttonHandler={letterButtonHandler}
                 />
                 <KeyboardButton 
