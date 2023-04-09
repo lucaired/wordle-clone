@@ -3,13 +3,13 @@ function Word(props) {
      * This component display a word. 
      */
 
-    const { word, colorCoding } = props
+    const { word } = props
 
     return <div 
         style={{display: 'flex', flexDirection: 'row', columnGap: '5px'}}
         >
         {word.map((letter) => {
-            return <Letter letter={letter} color={colorCoding[letter]} />
+            return <Letter letter={letter} />
         })}
     </div>
 }
@@ -19,12 +19,12 @@ function Letter(props) {
      * This component display a single letter. If the letter has a 
      * color coding there will be a animation.
      */
-    const { letter, color } = props
+    const { letter } = props
     return <span
             style={{
-                background: color,
-                color: color ? 'white' : 'black',
-                animation: color ? '1s ease 0s 1 normal none running colorChange' : 'none',
+                background: letter.color,
+                color: letter.color ? 'white' : 'black',
+                animation: letter.color ? '1s ease 0s 1 normal none running colorChange' : 'none',
                 fontSize: '18px',
                 fontWeight: 'bold',
                 border: '1px solid grey',
@@ -32,7 +32,7 @@ function Letter(props) {
                 width: '20px',
                 height: '20px',
             }}
-        >{letter}
+        >{letter.letter}
         </span>
 }
 
@@ -44,7 +44,7 @@ function WordGrid(props) {
      * word and grey letters are not in the word. If the letter has a 
      * color coding there will be a animation.
      */
-    const { words, colorCoding } = props
+    const { words } = props
     
     return <div style={{
         display: 'grid',
@@ -52,7 +52,7 @@ function WordGrid(props) {
         justifyContent: 'center',
         justifyItems: 'center'
     }}>
-        {words.map((word) => Word({word, colorCoding}))}
+        {words.map((word) => Word({word}))}
     </div>
 }
 

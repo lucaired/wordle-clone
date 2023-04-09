@@ -19,16 +19,7 @@ function App() {
    * It contains the WordGrid and the Keyboard.
    */
 
-  const [colorCoding, setColorCoding] = useState({})
-
-  const [words, setWords] = useState([
-    [" ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " "],
-  ])
+  const [words, setWords] = useState(Array(6).fill().map(() => Array(5).fill({letter: ' '})))
 
   /**
    * The current index of the word grid. We will increment the inner
@@ -44,7 +35,7 @@ function App() {
     let newWords = [...words]
     if (currentIndex[0] < newWords.length && 
         currentIndex[1] < newWords[currentIndex[0]].length) {
-          newWords[currentIndex[0]][currentIndex[1]] = letter
+          newWords[currentIndex[0]][currentIndex[1]] = { letter: letter }
           setWords(newWords)
           setCurrentIndex([currentIndex[0], currentIndex[1] + 1])
     }
@@ -55,35 +46,32 @@ function App() {
         currentIndex[1] > 0 &&
         currentIndex[1] <= words[currentIndex[0]].length) {
           let newWords = [...words]
-          newWords[currentIndex[0]][currentIndex[1] - 1] = ' '
+          newWords[currentIndex[0]][currentIndex[1] - 1]['letter'] = ' '
           setWords(newWords)
           setCurrentIndex([currentIndex[0], currentIndex[1] - 1])
         }
   }
 
-  // TODO: we have to make the color coding word specific and not letter specific
+  const currentWord = () => words[currentIndex[0]].map((letterObj) => letterObj.letter).join('')
 
   const enterButtonHandler = () => {
     if (currentIndex[0] < words.length && 
-        currentIndex[1] == words[currentIndex[0]].length) {
-          const word = words[currentIndex[0]].join('')
+        currentIndex[1] === words[currentIndex[0]].length) {
+          const word = currentWord()
           if (wordlist.includes(word.toLowerCase())) {
-            setCurrentIndex([currentIndex[0] + 1, 0])
 
-            let newColorCodings = {}
+            let newWords = [...words]
 
             for (let i = 0; i < word.length; i++) {
-              if (word[i] == chosenWord[i]) {
-                newColorCodings[word[i]] = 'green'
+              if (word[i] === chosenWord[i]) {
+                newWords[currentIndex[0]][i]['color'] = 'green'
               }
               else if (chosenWord.includes(word[i])) {
-                newColorCodings[word[i]] = 'orange'
+                newWords[currentIndex[0]][i]['color'] = 'orange'
               }
             }
-            setColorCoding({
-              ...colorCoding,
-              ...newColorCodings
-            })
+            setCurrentIndex([currentIndex[0] + 1, 0])
+            setWords(newWords)
           }
     }
   }
@@ -93,7 +81,9 @@ function App() {
       <h1 style={{
         borderBottom: '1px solid black',
         fontSize: '18px'
-      }}>Wordle</h1>
+      }}>
+        Wordle
+      </h1>
       <div 
         // Style the container, so that the Keyboard is at the bottom
         style={{
@@ -104,14 +94,13 @@ function App() {
         >
         <WordGrid
           words={words}
-          colorCoding={colorCoding}
         />
         <div style={{marginBottom: '100px'}}></div>
         <Keyboard
           letterButtonHandler={letterButtonHandler}
           enterButtonHandler={enterButtonHandler}
           delButtonHandler={delButtonHandler}
-          colorCoding={colorCoding}
+          colorCoding={{}}
         />
       </div>
     </div>
