@@ -29,8 +29,6 @@ function KeyboardButton(props) {
     // Detructure props in letter, color and buttonHandler
     const { letter, color, buttonHandler, buttonStyle } = props
 
-    console.log(buttonHandler)
-
     return <button style={{ backgroundColor: color, ...buttonStyle }} onClick={() => buttonHandler(letter)}>{letter}</button>
 }
 
