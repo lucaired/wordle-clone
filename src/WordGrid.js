@@ -6,8 +6,12 @@ function Word(props) {
     const { word } = props
 
     return <div 
-        style={{display: 'flex', flexDirection: 'row', columnGap: '5px'}}
-        >
+            style={{
+                display: 'flex',
+                flexDirection: 'row',
+                columnGap: '5px'
+            }}
+            >
         {word.map((letter) => {
             return <Letter letter={letter} />
         })}
