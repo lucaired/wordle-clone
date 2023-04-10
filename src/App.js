@@ -11,10 +11,13 @@ function App() {
   const [hideNotInWordList, setHideNotInWordList] = useState(true)
   const [hideWinnerNotification, setHideWinnerNotification] = useState(true)
 
-  useEffect(() => {
+  const chooseWord = () => {
     const chosenWord = wordlist[Math.floor(Math.random() * wordlist.length)].toUpperCase()
+    console.log(chosenWord)
     setChosenWord(chosenWord)
-  }, [])
+  }
+
+  useEffect(() => chooseWord(), [])
 
   /**
    * This is the main component of the app. 
@@ -92,6 +95,7 @@ function App() {
               setTimeout(() => {
                 resetWords()
                 setHideWinnerNotification(true)
+                chooseWord()
               }, 5000)
             }
           } else {
@@ -121,12 +125,17 @@ function App() {
         </p> 
   }
 
+  /** TODO: coding
+   * - refactor the code so that there is only one toast component
+   * - add a timer to the toast component, showing it for 5000ms
+   * 
+
   /* TODO: styling
     - centralize the letter in the word grid
     - use a toast to show the user that the word is not in the word list
     - adapt font size to the screen size
+    - shake the keyboard when the user presses enter on a word that is not in the word list
   */
-
 
   return (
     <div className="App">
