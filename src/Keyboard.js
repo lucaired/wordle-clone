@@ -35,6 +35,7 @@ function KeyboardButton(props) {
             style={{ 
                 backgroundColor: color,
                 fontSize: '4vw',
+                lineHeight: '4vw',
                 ...buttonStyle 
             }} 
             onClick={() => buttonHandler(letter)}
@@ -54,13 +55,13 @@ function Keyboard(props) {
     const [colorCoding, setColorCoding] = useState({})
     
     useEffect(()=> {
-        buildColorMapping(colorCoding, words)
+        buildColorMapping(words)
     }, [words])
 
     // Create a list of letters
     const letters = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M']
 
-    const buildColorMapping = (colorCoding, words) => {
+    const buildColorMapping = (words) => {
         /**
          * Green always dominates, orange only grey. This function processes
          * changes to the words and updates the colorCoding. It will update

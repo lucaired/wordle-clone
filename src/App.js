@@ -8,6 +8,8 @@ import Keyboard from './Keyboard';
 function App() {
 
   const [chosenWord, setChosenWord] = useState("")
+  const [hideNotInWordList, setHideNotInWordList] = useState(true)
+  const [hideWinnerNotification, setHideWinnerNotification] = useState(true)
 
   useEffect(() => {
     const chosenWord = wordlist[Math.floor(Math.random() * wordlist.length)].toUpperCase()
@@ -19,8 +21,9 @@ function App() {
    * It contains the WordGrid and the Keyboard.
    */
 
-  const [words, setWords] = useState(Array(6).fill().map(() => Array(5).fill({letter: ' '})))
-
+  const initializeWords = () => Array(6).fill().map(() => Array(5).fill({letter: ' '}))
+  const resetWords = () => { setWords(initializeWords()); setCurrentIndex([0,0]) }
+  const [words, setWords] = useState(initializeWords())
   /**
    * The current index of the word grid. We will increment the inner
    * index if there is still place in the word. The outer index
@@ -32,6 +35,14 @@ function App() {
   const [currentIndex, setCurrentIndex] = useState([0,0])
 
   const letterButtonHandler = (letter) => {
+    /**
+     * This function is called when a letter button is pressed. 
+     * It will add the letter to the current word and increment
+     * the current index. If the current word is full, it will
+     * no longer increment the inner index and will not add the
+     * letter to the word.
+     */
+
     let newWords = [...words]
     if (currentIndex[0] < newWords.length && 
         currentIndex[1] < newWords[currentIndex[0]].length) {
@@ -75,26 +86,47 @@ function App() {
             }
             setCurrentIndex([currentIndex[0] + 1, 0])
             setWords(newWords)
+
+            if (chosenWord === word) {
+              setHideWinnerNotification(false)
+              setTimeout(() => {
+                resetWords()
+                setHideWinnerNotification(true)
+              }, 5000)
+            }
+          } else {
+            setHideNotInWordList(false)
+            setTimeout(() => {
+              setHideNotInWordList(true)
+            }, 500)
           }
     }
   }
 
-  const NotInWordList = () => {
+  const Toast = (props) => {
     // How to wrap the text in CSS so that it takes only the width of the word
-
+    const { hide, backgroundColor, text } = props
     return <p 
       style={{
           color: 'white',
           border: '1px solid black',
           borderRadius: '5px',
-          backgroundColor: 'black',
-          display: 'inline-block',
+          backgroundColor: backgroundColor,
+          display: hide ? 'none' : 'inline-block',
           padding: '1vw',
           fontWeight: 'bold',
+          zIndex: '100',
         }}>
-          Not in word list
+          {text}
         </p> 
-    }
+  }
+
+  /* TODO: styling
+    - centralize the letter in the word grid
+    - use a toast to show the user that the word is not in the word list
+    - adapt font size to the screen size
+  */
+
 
   return (
     <div className="App">
@@ -105,7 +137,6 @@ function App() {
       }}>
         Wordle
       </h1>
-      <NotInWordList />
       <div 
         // Style the container, so that the Keyboard is at the bottom
         style={{
@@ -125,6 +156,16 @@ function App() {
           words={words}
         />
       </div>
+      <Toast
+        hide={hideNotInWordList}
+        backgroundColor='black'
+        text='In the word list'
+      />
+      <Toast
+        hide={hideWinnerNotification}
+        backgroundColor='green'
+        text='You won!'
+      />
     </div>
   );
 }
