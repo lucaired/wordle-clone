@@ -68,14 +68,22 @@ function Keyboard(props) {
          * the colorCoding only if the new color is green or orange and the
          * old color is grey. If no color has been assigned to a letter it
          * will not be updated. Also if no previous colors have been assigned
-         * the new color will be assigned.
+         * the new color will be assigned. Furthermore, if all letters are ' '
+         * the colorCoding will be reset.
          */
 
         let newColorCoding = {}
+        let emptyGrid = true
         words.forEach((word) => {
             word.forEach((letter) => {
                 const label = letter['letter']
+                // If we encounter a non-empty letter, we know that the grid is not empty                
+                if (label !== ' ') {
+                    emptyGrid = false
+                }
+                
                 const newColor = letter['color']
+                
                 if (colorCoding.hasOwnProperty(label)) {
                     const oldColor = colorCoding[label]
                     if (newColor === 'green') {
@@ -92,9 +100,13 @@ function Keyboard(props) {
                 }
             })
         })
-        setColorCoding(colorCoding => {
-            return {...colorCoding, ...newColorCoding}
-        })
+        if (emptyGrid) {
+            setColorCoding({})
+        } else {
+            setColorCoding(colorCoding => {
+                return {...colorCoding, ...newColorCoding}
+            })
+        }
     }
 
     return <div>
