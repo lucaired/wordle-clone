@@ -8,10 +8,10 @@ import Keyboard from './Keyboard';
 function App() {
 
   const [chosenWord, setChosenWord] = useState("")
+
   useEffect(() => {
     const chosenWord = wordlist[Math.floor(Math.random() * wordlist.length)].toUpperCase()
     setChosenWord(chosenWord)
-    console.log(chosenWord)
   }, [])
 
   /**
@@ -78,27 +78,46 @@ function App() {
           }
     }
   }
-  // TODO: style the app
+
+  const NotInWordList = () => {
+    // How to wrap the text in CSS so that it takes only the width of the word
+
+    return <p 
+      style={{
+          color: 'white',
+          border: '1px solid black',
+          borderRadius: '5px',
+          backgroundColor: 'black',
+          display: 'inline-block',
+          padding: '1vw',
+          fontWeight: 'bold',
+        }}>
+          Not in word list
+        </p> 
+    }
+
   return (
     <div className="App">
       <h1 style={{
         borderBottom: '1px solid black',
-        fontSize: '18px'
+        fontSize: '6vw',
+        paddingBottom: '30px',
       }}>
         Wordle
       </h1>
+      <NotInWordList />
       <div 
         // Style the container, so that the Keyboard is at the bottom
         style={{
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
+          rowGap: '10px',
         }}
         >
         <WordGrid
           words={words}
         />
-        <div style={{marginBottom: '100px'}}></div>
         <Keyboard
           letterButtonHandler={letterButtonHandler}
           enterButtonHandler={enterButtonHandler}

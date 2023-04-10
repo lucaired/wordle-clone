@@ -29,12 +29,11 @@ function Letter(props) {
                 background: letter.color,
                 color: letter.color ? 'white' : 'black',
                 animation: letter.color ? '1s ease 0s 1 normal none running colorChange' : 'none',
-                fontSize: '18px',
                 fontWeight: 'bold',
                 border: '1px solid grey',
-                lineHeight: '1',
-                width: '20px',
-                height: '20px',
+                fontSize: '5vw',
+                height: '8vw',
+                width: '8vw',
             }}
         >{letter.letter}
         </span>

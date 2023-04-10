@@ -10,7 +10,7 @@ function KeyboardButtonRow(props) {
     return <div style={{
         display: 'flex',
         flexDirection: 'row',
-        columnGap: '5px'
+        columnGap: '5px',
     }}>
         {letters.map((letter) => {
             return <KeyboardButton 
@@ -32,7 +32,11 @@ function KeyboardButton(props) {
     const { letter, color, buttonHandler, buttonStyle } = props
 
     return <button 
-            style={{ backgroundColor: color, ...buttonStyle }} 
+            style={{ 
+                backgroundColor: color,
+                fontSize: '4vw',
+                ...buttonStyle 
+            }} 
             onClick={() => buttonHandler(letter)}
         >
             {letter}
@@ -58,7 +62,12 @@ function Keyboard(props) {
 
     const buildColorMapping = (colorCoding, words) => {
         /**
-         * Green always dominates, orange only grey
+         * Green always dominates, orange only grey. This function processes
+         * changes to the words and updates the colorCoding. It will update
+         * the colorCoding only if the new color is green or orange and the
+         * old color is grey. If no color has been assigned to a letter it
+         * will not be updated. Also if no previous colors have been assigned
+         * the new color will be assigned.
          */
 
         let newColorCoding = {}
