@@ -169,7 +169,7 @@ function App() {
       <Toast
         hide={hideNotInWordList}
         backgroundColor='black'
-        text='In the word list'
+        text='Not in word list'
       />
       <Toast
         hide={hideWinnerNotification}
