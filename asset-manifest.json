@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/lucaired/wordle-clone/static/css/main.8e1b5b82.chunk.css",
+    "main.js": "/lucaired/wordle-clone/static/js/main.c0ae0024.chunk.js",
+    "main.js.map": "/lucaired/wordle-clone/static/js/main.c0ae0024.chunk.js.map",
+    "runtime-main.js": "/lucaired/wordle-clone/static/js/runtime-main.4f197150.js",
+    "runtime-main.js.map": "/lucaired/wordle-clone/static/js/runtime-main.4f197150.js.map",
+    "static/js/2.71143dc2.chunk.js": "/lucaired/wordle-clone/static/js/2.71143dc2.chunk.js",
+    "static/js/2.71143dc2.chunk.js.map": "/lucaired/wordle-clone/static/js/2.71143dc2.chunk.js.map",
+    "static/js/3.84d8b671.chunk.js": "/lucaired/wordle-clone/static/js/3.84d8b671.chunk.js",
+    "static/js/3.84d8b671.chunk.js.map": "/lucaired/wordle-clone/static/js/3.84d8b671.chunk.js.map",
+    "index.html": "/lucaired/wordle-clone/index.html",
+    "static/css/main.8e1b5b82.chunk.css.map": "/lucaired/wordle-clone/static/css/main.8e1b5b82.chunk.css.map",
+    "static/js/2.71143dc2.chunk.js.LICENSE.txt": "/lucaired/wordle-clone/static/js/2.71143dc2.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4f197150.js",
+    "static/js/2.71143dc2.chunk.js",
+    "static/css/main.8e1b5b82.chunk.css",
+    "static/js/main.c0ae0024.chunk.js"
+  ]
+}
