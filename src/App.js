@@ -129,6 +129,7 @@ function App() {
    * - refactor the code so that there is only one toast component
    * - add a timer to the toast component, showing it for 5000ms
    * - add a listener to keydown that passes the uppercase of a letter input to the letterButtonHandler
+   * - update React deps
    * 
 
   /* TODO: styling
