@@ -1,6 +1,6 @@
 # Worlde game
 
-This is replication of The New York Times' [Wordle Game](https://www.nytimes.com/games/wordle/index.html)
+This is replication of The New York Times' [Wordle Game](https://www.nytimes.com/games/wordle/index.html). The application is hosted on [GitHub pages](https://lucaired.github.io/wordle-clone/).
 
 ## Next Steps
 
