@@ -111,21 +111,28 @@ function App() {
   }
 
   const Toast = (props) => {
-    // How to wrap the text in CSS so that it takes only the width of the word
     const { hide, backgroundColor, text } = props
-    return <p 
-      style={{
-          color: 'white',
-          border: '1px solid black',
-          borderRadius: '5px',
-          backgroundColor: backgroundColor,
-          display: hide ? 'none' : 'inline-block',
-          padding: '1vw',
-          fontWeight: 'bold',
-          zIndex: '100',
-        }}>
-          {text}
-        </p> 
+    return <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginBottom: '1vw',
+            }}>
+        <p 
+          style={{
+            color: 'white',
+            border: '1px solid black',
+            borderRadius: '5px',
+            backgroundColor: backgroundColor,
+            display: hide ? 'none' : 'inline-block',
+            fontSize: '2vw',
+            padding: '1vw',
+            fontWeight: 'bold',
+            position: 'absolute',
+            zIndex: '100',
+          }}>
+            {text}
+        </p>
+      </div>
   }
 
   /** TODO: coding
@@ -152,6 +159,16 @@ function App() {
       <h1 className="wordle-title">
         Wordle
       </h1>
+      <Toast
+        hide={hideNotInWordList}
+        backgroundColor='black'
+        text='Not in word list'
+      />
+      <Toast
+        hide={hideWinnerNotification}
+        backgroundColor='green'
+        text='You won!'
+      />
       <div className="wordle-container">
         <WordGrid
           words={words}
@@ -164,16 +181,6 @@ function App() {
           words={words}
         />
       </div>
-      <Toast
-        hide={hideNotInWordList}
-        backgroundColor='black'
-        text='Not in word list'
-      />
-      <Toast
-        hide={hideWinnerNotification}
-        backgroundColor='green'
-        text='You won!'
-      />
     </div>
   );
 }
