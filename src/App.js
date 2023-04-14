@@ -142,24 +142,17 @@ function App() {
     - shake the keyboard when the user presses enter on a word that is not in the word list
   */
 
+/**
+ * Generate a gap between the two columns inside the 
+ * wordle-container div.
+ */
+
   return (
     <div className="App">
-      <h1 style={{
-        borderBottom: '1px solid black',
-        fontSize: '6vw',
-        paddingBottom: '30px',
-      }}>
+      <h1 className="wordle-title">
         Wordle
       </h1>
-      <div 
-        // Style the container, so that the Keyboard is at the bottom
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          rowGap: '10px',
-        }}
-        >
+      <div className="wordle-container">
         <WordGrid
           words={words}
           shakingWordIndex={shakingWordIndex}

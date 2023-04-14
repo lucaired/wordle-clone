@@ -53,7 +53,6 @@ function WordGrid(props) {
     return <div style={{
         display: 'grid',
         gridGap: '5px',
-        justifyContent: 'center',
         justifyItems: 'center'
     }}>
         {words.map((word, idx) => {

@@ -109,11 +109,9 @@ function Keyboard(props) {
         }
     }
 
-    return <div>
-        <div style={{
+    return <div style={{
             display: 'grid',
             gridGap: '5px',
-            justifyContent: 'center',
             justifyItems: 'center'
         }}>
             <KeyboardButtonRow 
@@ -149,7 +147,6 @@ function Keyboard(props) {
                 />
             </div>
         </div>
-    </div>
 }
 
 export default Keyboard
