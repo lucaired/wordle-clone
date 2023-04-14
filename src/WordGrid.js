@@ -3,9 +3,10 @@ function Word(props) {
      * This component display a word. 
      */
 
-    const { word } = props
+    const { word, shake } = props
 
-    return <div 
+    return <div
+            className={shake ? 'guess-input' : ''}
             style={{
                 display: 'flex',
                 flexDirection: 'row',
@@ -47,7 +48,7 @@ function WordGrid(props) {
      * word and grey letters are not in the word. If the letter has a 
      * color coding there will be a animation.
      */
-    const { words } = props
+    const { words, shakingWordIndex } = props
     
     return <div style={{
         display: 'grid',
@@ -55,7 +56,12 @@ function WordGrid(props) {
         justifyContent: 'center',
         justifyItems: 'center'
     }}>
-        {words.map((word) => Word({word}))}
+        {words.map((word, idx) => {
+            return <Word
+                word={word}
+                shake={idx === shakingWordIndex}
+            />
+        })}
     </div>
 }
 

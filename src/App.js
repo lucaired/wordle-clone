@@ -9,6 +9,7 @@ function App() {
 
   const [chosenWord, setChosenWord] = useState("")
   const [hideNotInWordList, setHideNotInWordList] = useState(true)
+  const [shakingWordIndex, setShakingWordIndex] = useState(-1)
   const [hideWinnerNotification, setHideWinnerNotification] = useState(true)
 
   const chooseWord = () => {
@@ -100,9 +101,11 @@ function App() {
             }
           } else {
             setHideNotInWordList(false)
+            setShakingWordIndex(currentIndex[0])
             setTimeout(() => {
               setHideNotInWordList(true)
-            }, 500)
+              setShakingWordIndex(-1)
+            }, 1000)
           }
     }
   }
@@ -159,6 +162,7 @@ function App() {
         >
         <WordGrid
           words={words}
+          shakingWordIndex={shakingWordIndex}
         />
         <Keyboard
           letterButtonHandler={letterButtonHandler}
