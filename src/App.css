@@ -2,19 +2,7 @@
   text-align: center;
 }
 
-div.guess-input {
-  animation: horizontal-shaking 0.35s infinite;
-  font-size: 1rem;
-  display: inline-block;
-}
-
-@keyframes horizontal-shaking {
-  0% { transform: translateX(0) }
-  25% { transform: translateX(5px) }
-  50% { transform: translateX(-5px) }
-  75% { transform: translateX(5px) }
-  100% { transform: translateX(0) }
-}
+/* App component */
 
 .wordle-container {
   display: flex;
@@ -30,3 +18,32 @@ div.guess-input {
   margin-top: 0;
 }
 
+/* Keyboard component */
+
+.letter-button {
+  font-size: 4vw;
+  line-height: 4vw;
+}
+
+@media only screen 
+  and (max-device-width: 480px)
+  and (orientation: portrait) {
+  .letter-button {
+    font-size: 6vw;
+    line-height: 6vw;
+  }
+}
+
+div.guess-input {
+  animation: horizontal-shaking 0.35s infinite;
+  font-size: 1rem;
+  display: inline-block;
+}
+
+@keyframes horizontal-shaking {
+  0% { transform: translateX(0) }
+  25% { transform: translateX(5px) }
+  50% { transform: translateX(-5px) }
+  75% { transform: translateX(5px) }
+  100% { transform: translateX(0) }
+}

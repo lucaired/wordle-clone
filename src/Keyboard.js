@@ -31,11 +31,10 @@ function KeyboardButton(props) {
     // Detructure props in letter, color and buttonHandler
     const { letter, color, buttonHandler, buttonStyle } = props
 
-    return <button 
+    return <button
+            className="letter-button" 
             style={{ 
                 backgroundColor: color,
-                fontSize: '4vw',
-                lineHeight: '4vw',
                 ...buttonStyle 
             }} 
             onClick={() => buttonHandler(letter)}
